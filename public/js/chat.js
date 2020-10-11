@@ -15,22 +15,16 @@ const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true }
 
 const autoscroll = () => {
   const $newMessage = $messages.lastElementChild
-  console.log("autoscroll -> $newMessage", $newMessage)
 
   const newMessageStyles = getComputedStyle($newMessage)
   const newMessageMargin = parseInt(newMessageStyles.marginBottom)
-  console.log("autoscroll -> newMessageMargin", newMessageMargin)
   const newMessageHeight = $newMessage.offsetHeight + newMessageMargin
-  console.log("autoscroll -> newMessageHeight", newMessageHeight)
 
   const visibleHeight = $messages.offsetHeight
-  console.log("autoscroll -> visibleHeight", visibleHeight)
 
   const containerHeight = $messages.scrollHeight
-  console.log("autoscroll -> containerHeight", containerHeight)
 
   const scrollOffset = $messages.scrollTop + visibleHeight
-  console.log("autoscroll -> scrollOffset", scrollOffset)
 
   if (containerHeight - newMessageHeight <= scrollOffset) {
       $messages.scrollTop = $messages.scrollHeight
